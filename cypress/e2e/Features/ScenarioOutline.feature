@@ -1,4 +1,4 @@
-Feature: prueba validation
+Feature: Login by using ScenaioOutline
 
 Scenario Outline: Login Page invalid credentials
     Given I access to login page
@@ -6,7 +6,7 @@ Scenario Outline: Login Page invalid credentials
     Then Error Message is displayed
     
     Examples:
-        | user           | password |
+        |  user          | password |
         | 'Rose'         | '345@/'  |
         | 'Mery'         | '12345'  |
         | 'Jane'         | 'Testing'|

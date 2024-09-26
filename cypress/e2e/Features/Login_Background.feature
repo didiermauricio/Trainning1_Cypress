@@ -1,4 +1,4 @@
-Feature: prueba validation
+Feature: Login and Background
 
 Background:
     Given I access to login page
