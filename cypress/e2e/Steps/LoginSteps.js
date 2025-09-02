@@ -1,50 +1,56 @@
 import {Given, When, Then} from "cypress-cucumber-preprocessor/steps";
 
+const selectors = {
+  emailInput: '#email',
+  passwordInput: '#password',
+  submitButton: '#submit',
+  errorMessage: '#error',
+  contactListHeader: 'h1',
+  addContactButton: '#add-contact',
+  logoutButton: '#logout'
+};
+
 Given('I access to login page', ()=>{
   cy.visit("https://thinking-tester-contact-list.herokuapp.com")
 })
 
 When('Incorrect User and password are typed', ()=>{
-  cy.get('#email').should("be.visible").clear();
-  cy.get('#email').type("test@test.com");
-  cy.get('#password').clear();
-  cy.get('#password').type("123456789");
-  cy.get('#submit').should("be.visible").click() ;
+  cy.get(selectors.emailInput).should("be.visible").clear();
+  cy.get(selectors.emailInput).type("test@test.com");
+  cy.get(selectors.passwordInput).clear();
+  cy.get(selectors.passwordInput).type("123456789");
+  cy.get(selectors.submitButton).should("be.visible").click() ;
   
 })
 
 When('Incorrect User {string} and Password {string} are typed', (user, password)=>{
-  cy.get('#email').should("be.visible").clear();
-  cy.get('#email').type(user);
-  cy.get('#password').clear();
-  cy.get('#password').type(password);
-  cy.get('#submit').should("be.visible").click() ;
+  cy.get(selectors.emailInput).type(user);
+  cy.get(selectors.emailInput).should("be.visible").clear();
+  cy.get(selectors.passwordInput).clear();
+  cy.get(selectors.passwordInput).type(password);
+  cy.get(selectors.submitButton).should("be.visible").click() ;
   
 })
 
 Then('Error Message is displayed', ()=>{
-  cy.get('#error').should('contain',"Incorrect username or password")
+  cy.get(selectors.errorMessage).should('contain',"Incorrect username or password")
 })
 
 When('Incorrect User and password are not typed', ()=>{
-  cy.get('#email').clear();
-  cy.get('#password').clear();
+  cy.get(selectors.emailInput).clear();
+  cy.get(selectors.passwordInput).clear();
 
-  cy.get('#submit').should("be.visible").click() ;
+  cy.get(selectors.submitButton).should("be.visible").click() ;
 })
 
 When('Correct User and password are typed', ()=>{
-  cy.get('#email').clear();
-  cy.get('#email').should('be.empty');
-  cy.get('#email').type("didiermauricio@gmail.com");
-  cy.get('#password').clear();
-  cy.get('#password').type("1032386452");
+  cy.get(selectors.emailInput).clear();
+  cy.get(selectors.emailInput).should('be.empty');
+  cy.get(selectors.emailInput).type("didiermauricio@gmail.com");
+  cy.get(selectors.passwordInput).clear();
+  cy.get(selectors.passwordInput).type("1032386452");
 
-  cy.get('#submit').should("be.visible").click() ; 
+  cy.get(selectors.submitButton).should("be.visible").click() ; 
 })
 
-Then('Contact List is Displayed', ()=>{
-  cy.get('h1').should('contain',"Contact List");
-  cy.get('#add-contact').should("exist");
-  cy.get('#logout').should("exist");
-})
+

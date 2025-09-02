@@ -9,7 +9,7 @@
   "author": "DMSP",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.13.3"
+    "cypress": "^13.17.0"
   },
   "dependencies": {
     "cypress-cucumber-preprocessor": "^4.3.1",
